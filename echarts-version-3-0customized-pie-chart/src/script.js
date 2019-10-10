@@ -1,0 +1,262 @@
+        // based ready dom, initialize echarts instance 
+		var myChart = echarts.init(document.getElementById('main'));
+
+        // Specify configurations and data graphs 
+//         var option = {
+//     backgroundColor: '#2c343c',
+
+//     title: {
+//         text: 'Customized Pie',
+//         left: 'center',
+//         top: 20,
+//         textStyle: {
+//             color: '#ccc'
+//         }
+//     },
+
+//     tooltip : {
+//         trigger: 'item',
+//         formatter: "{a} <br/>{b} : {c} ({d}%)"
+//     },
+
+//     visualMap: {
+//         show: false,
+//         min: 80,
+//         max: 600,
+//         inRange: {
+//             colorLightness: [0, 1]
+//         }
+//     },
+//     series : [
+//         {
+//             name:'Access Sources',
+//             type:'pie',
+//             radius : '55%',
+//             center: ['50%', '50%'],
+//             data:[
+//                 {value:335, name:'Direct Interview'},
+//                 {value:310, name:'E-Mail Marketing'},
+//                 {value:274, name:'Advertising Alliance'},
+//                 {value:235, name:'Video Ads'},
+//                 {value:400, name:'Search Engine'}
+//             ].sort(function (a, b) { return a.value - b.value}),
+//             roseType: 'angle',
+//             label: {
+//                 normal: {
+//                     textStyle: {
+//                         color: 'rgba(255, 255, 255, 0.3)'
+//                     }
+//                 }
+//             },
+//             labelLine: {
+//                 normal: {
+//                     lineStyle: {
+//                         color: 'rgba(255, 255, 255, 0.3)'
+//                     },
+//                     smooth: 0.2,
+//                     length: 10,
+//                     length2: 20
+//                 }
+//             },
+//             itemStyle: {
+//                 normal: {
+//                     color: '#c23531',
+//                     shadowBlur: 200,
+//                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+//                 }
+//             }
+//         }
+//     ]
+// };
+
+		// Use just the specified configurations and data charts. 
+
+option = {
+    backgroundColor:"#0B1837",
+    color: ["#EAEA26", "#906BF9", "#FE5656", "#01E17E", "#3DD1F9", "#FFAD05"],
+    // title: {
+    //     text: '网络/安全设备',
+    //     left: '60',
+    //     top: 0,
+    //     textAlign: 'center',
+    //     textStyle: {
+    //         color: '#fff',
+    //         fontSize: 14,
+    //         fontWeight: 0
+    //     }
+    // },
+    grid: {
+        left: -100,
+        top: 50,
+        bottom: 10,
+        right: 10,
+        containLabel: true
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{b} : {c} ({d}%)"
+    },
+    legend: {
+        type: "scroll",
+        orient: "vartical",
+        // x: "right",
+        top: "center",
+        right: "15",
+        // bottom: "0%",
+        itemWidth: 16,
+        itemHeight: 8,
+        itemGap: 16,
+        textStyle: {
+            color: '#A3E2F4',
+            fontSize: 12,
+            fontWeight: 0
+        },
+        data: ['精细化运营平台', 'unity官网', '游戏中心官网', '活动相关']
+    },
+    polar: {},
+    angleAxis: {
+        interval: 1,
+        type: 'category',
+        data: [],
+        z: 10,
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: "#0B4A6B",
+                width: 1,
+                type: "solid"
+            },
+        },
+        axisLabel: {
+            interval: 0,
+            show: true,
+            color: "#0B4A6B",
+            margin: 8,
+            fontSize: 16
+        },
+    },
+    radiusAxis: {
+        min: 40,
+        max: 120,
+        interval: 20,
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: "#0B3E5E",
+                width: 1,
+                type: "solid"
+            },
+        },
+        axisLabel: {
+            formatter: '{value} %',
+            show: false,
+            padding: [0, 0, 20, 0],
+            color: "#0B3E5E",
+            fontSize: 16
+        },
+        splitLine: {
+            lineStyle: {
+                color: "#0B3E5E",
+                width: 2,
+                type: "solid"
+            }
+        }
+    },
+    calculable: true,
+    series: [{
+        type: 'pie',
+        radius: ["5%", "10%"],
+        hoverAnimation: false,
+        labelLine: {
+            normal: {
+                show: false,
+                length: 30,
+                length2: 55
+            },
+            emphasis: {
+                show: false
+            }
+        },
+        data: [{
+            name: '',
+            value: 0,
+            itemStyle: {
+                normal: {
+                    color: "#0B4A6B"
+                }
+            }
+        }]
+    }, {
+        type: 'pie',
+        radius: ["90%", "95%"],
+        hoverAnimation: false,
+        labelLine: {
+            normal: {
+                show: false,
+                length: 30,
+                length2: 55
+            },
+            emphasis: {
+                show: false
+            }
+        },
+        name: "",
+        data: [{
+            name: '',
+            value: 0,
+            itemStyle: {
+                normal: {
+                    color: "#0B4A6B"
+                }
+            }
+        }]
+    },{
+        stack: 'a',
+        type: 'pie',
+        radius: ['20%', '80%'],
+        roseType: 'area',
+        zlevel:10,
+        label: {
+            normal: {
+                show: true,
+                formatter: "{c}",
+                textStyle: {
+                    fontSize: 12,
+                },
+                position: 'outside'
+            },
+            emphasis: {
+                show: true
+            }
+        },
+        labelLine: {
+            normal: {
+                show: true,
+                length: 20,
+                length2: 55
+            },
+            emphasis: {
+                show: false
+            }
+        },
+        data: [{
+                value: 10,
+                name: '精细化运营平台'
+            },
+            {
+                value: 20,
+                name: 'unity官网'
+            },
+            {
+                value: 35,
+                name: '游戏中心官网'
+            },
+            {
+                value: 35,
+                name: '活动相关'
+            }
+          
+        ]
+    }, ]
+}
+		myChart.setOption(option);
